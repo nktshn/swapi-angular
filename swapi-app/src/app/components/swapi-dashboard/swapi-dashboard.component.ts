@@ -58,8 +58,7 @@ export class SwapiDashboardComponent implements OnInit {
    */
   initData(): void {
     const observablesToSubscribe = [this.getRoot(), this.loadDataForFirstTab()];
-    concat(...observablesToSubscribe).subscribe(res => {console.log(res);
-    });
+    concat(...observablesToSubscribe).subscribe(_ => {});
   }
 
 }

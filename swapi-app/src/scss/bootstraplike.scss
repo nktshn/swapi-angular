@@ -1,0 +1,60 @@
+// bootstrap-like shit (:
+// don't worry, i use it for my projects only and i find it "easy to use"
+
+// flex
+
+.r {
+    display: flex;
+    flex-direction: row;
+}
+
+.c {
+    display: flex;
+    flex-direction: column;
+}
+
+.jb {
+    justify-content: space-between;
+}
+
+.jc {
+    justify-content: center;
+}
+
+.ac {
+    align-items: center;
+}
+
+// sizes
+
+.w {
+    width: 100%;
+}
+
+.h {
+    height: 100%;
+}
+
+.p10 {
+    padding: 10px;
+}
+
+.p20 {
+    padding: 20px;
+}
+
+.m10 {
+    padding: 10px;
+}
+
+.m20 {
+    padding: 20px;
+}
+
+// misc
+
+.hand {
+    &:hover {
+        cursor: pointer;
+    }
+}
