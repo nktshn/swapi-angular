@@ -5,6 +5,7 @@ import { SwapiRoot } from 'src/app/models/swapi-root';
 import { SwapiPeople } from 'src/app/models/swapi-people';
 import { SwapiCollectionResult } from 'src/app/models/swapi-collection-result';
 import { concatAll } from 'rxjs/operators';
+import { ResourceDataList } from './resource-data-list';
 // import { SwapiService } from 'ng2-swapi';
 
 @Component({
@@ -18,7 +19,7 @@ export class SwapiDashboardComponent implements OnInit {
   isSomeResourceNotAvailable: boolean = false;
 
   existingSWAPIResourcesToGet: string[] = [];
-  people: SwapiPeople[]
+  resourceDataList: ResourceDataList<any>;
 
   constructor(
     private swapi: SwapiService,
@@ -43,7 +44,10 @@ export class SwapiDashboardComponent implements OnInit {
       const isPeopleResourceExists: boolean = this.existingSWAPIResourcesToGet.some(res => res === this.firstTabResource);
       if (isPeopleResourceExists) {
         this.swapi.getPeople().subscribe(res => {
-          this.people = res.results;
+          this.resourceDataList = {
+            listOfItems: res.results,
+            itemLabel: 'name',
+          };
           obs.next(res);
           obs.complete();
         });

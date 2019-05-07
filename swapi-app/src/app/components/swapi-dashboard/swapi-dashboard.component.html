@@ -1,12 +1,18 @@
 <div class="dashboard w">
-  <div class="dashboard__table w">
-    <div class="dashboard__table__header r jb w ac">
-      <div *ngFor="let resource of existingSWAPIResourcesToGet" class="dashboard__table__header__item hand w r jc p20">
+  <div class="dashboard__data w">
+    <div class="dashboard__data__header r jb w ac">
+      <div *ngFor="let resource of existingSWAPIResourcesToGet" class="dashboard__data__header__item hand w r jc p20">
         {{resource}}
       </div>
-      <div class="dashboard__table__content">
-        <div class="dashboard__table__content_row">
+    </div>
+    <div class="dashboard__data__content r w h">
+      <div class="dashboard__data__content__itemlist w h">
+        <div *ngFor="let item of resourceDataList?.listOfItems" class="dashboard__data__content__itemlist__item p10 m10 hand">
+          {{item[resourceDataList.itemLabel]}}
         </div>
+      </div>
+      <div class="dashboard__data__content__item-details w h">
+        <!--  -->
       </div>
     </div>
   </div>
