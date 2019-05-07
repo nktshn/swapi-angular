@@ -1,3 +1,10 @@
-<p>
-  swapi-dashboard works!
-</p>
+<div class="dashboard">
+  <div class="dashboard__table">
+    <div class="dashboard__table__header">
+      
+    </div>
+    <div *ngFor="let resource of existingSWAPIResourcesToGet" class="dashboard__table__header__item">
+      {{resource}}
+    </div>
+  </div>
+</div>
