@@ -11,8 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HttpClientModule,
   ],
-   exports: [
+  exports: [
     SwapiDashboardComponent,
-   ]
+  ]
 })
 export class SharedModule { }
