@@ -6,6 +6,7 @@ import { SwapiPeople } from 'src/app/models/swapi-people';
 import { SwapiCollectionResult } from 'src/app/models/swapi-collection-result';
 import { concatAll } from 'rxjs/operators';
 import { ResourceDataList } from './resource-data-list';
+import { cloneDeep } from 'src/app/utils/util-functions';
 // import { SwapiService } from 'ng2-swapi';
 
 @Component({
@@ -20,6 +21,7 @@ export class SwapiDashboardComponent implements OnInit {
 
   existingSWAPIResourcesToGet: string[] = [];
   resourceDataList: ResourceDataList<any>;
+  selectedResourceItem: any;
 
   constructor(
     private swapi: SwapiService,
@@ -42,18 +44,17 @@ export class SwapiDashboardComponent implements OnInit {
   loadDataForFirstTab(): Observable<SwapiCollectionResult<SwapiPeople[]>> {
     return new Observable(obs => {
       const isPeopleResourceExists: boolean = this.existingSWAPIResourcesToGet.some(res => res === this.firstTabResource);
-      if (isPeopleResourceExists) {
-        this.swapi.getPeople().subscribe(res => {
-          this.resourceDataList = {
-            listOfItems: res.results,
-            itemLabel: 'name',
-          };
-          obs.next(res);
-          obs.complete();
-        });
-      } else {
-        this.isSomeResourceNotAvailable = true;
-      }
+      isPeopleResourceExists && this.swapi.getPeople().subscribe(res => {
+        this.resourceDataList = {
+          listOfItems: res.results,
+          itemLabel: 'name',
+        };
+        this.isSomeResourceNotAvailable = false;
+        obs.next(res);
+        obs.complete();
+      }, err => {
+        this.isSomeResourceNotAvailable = false;
+      });
     });
   }
 
@@ -62,7 +63,14 @@ export class SwapiDashboardComponent implements OnInit {
    */
   initData(): void {
     const observablesToSubscribe = [this.getRoot(), this.loadDataForFirstTab()];
-    concat(...observablesToSubscribe).subscribe(_ => {});
+    concat(...observablesToSubscribe).subscribe(_ => { });
+  }
+
+  onSelectResourceItem(resourceItem: any): void {
+    this.selectedResourceItem = cloneDeep(resourceItem);
+  }
+
+  onSelectResource(resource: string): void {
   }
 
 }

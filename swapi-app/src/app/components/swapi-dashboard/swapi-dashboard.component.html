@@ -1,18 +1,20 @@
 <div class="dashboard w">
   <div class="dashboard__data w">
     <div class="dashboard__data__header r jb w ac">
-      <div *ngFor="let resource of existingSWAPIResourcesToGet" class="dashboard__data__header__item hand w r jc p20">
+      <div *ngFor="let resource of existingSWAPIResourcesToGet" class="dashboard__data__header__item hand w r jc p20"
+        (click)="onSelectResource(resource)">
         {{resource}}
       </div>
     </div>
     <div class="dashboard__data__content r w h">
-      <div class="dashboard__data__content__itemlist w h">
-        <div *ngFor="let item of resourceDataList?.listOfItems" class="dashboard__data__content__itemlist__item p10 m10 hand">
+      <div class="dashboard__data__content__itemlist w h p20">
+        <div *ngFor="let item of resourceDataList?.listOfItems"
+          class="dashboard__data__content__itemlist__item p10 m10 hand" (click)="onSelectResourceItem(item)">
           {{item[resourceDataList.itemLabel]}}
         </div>
       </div>
-      <div class="dashboard__data__content__item-details w h">
-        <!--  -->
+      <div class="dashboard__data__content__item-details w h p20">
+        <app-swapi-resource-item-details [resourceItem]="selectedResourceItem"></app-swapi-resource-item-details>
       </div>
     </div>
   </div>

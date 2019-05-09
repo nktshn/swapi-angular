@@ -2,17 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SwapiDashboardComponent } from './components/swapi-dashboard/swapi-dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SwapiResourceItemDetailsComponent } from './components/swapi-dashboard/swapi-resource-item-details/swapi-resource-item-details.component';
+import { SwapiModule } from './components/swapi-dashboard/swapi.module';
 
 @NgModule({
   declarations: [
-    SwapiDashboardComponent,
+    
   ],
   imports: [
     CommonModule,
     HttpClientModule,
+    SwapiModule,
   ],
   exports: [
-    SwapiDashboardComponent,
+    SwapiModule,
   ]
 })
 export class SharedModule { }
